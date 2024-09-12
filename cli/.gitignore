@@ -5,3 +5,5 @@
 /users.json
 /groups.json
 /authorized-always.json
+/.direnv/
+/cli/.direnv/
