@@ -9,8 +9,7 @@ from ._content_persistance_tools import (
     dump_content_to_file,
     load_content_from_file,
     get_opt_list_field_of_expected_type,
-    mk_parent_dirs_opt,
-    add_cond_to_dict_or_rm_key
+    mk_parent_dirs_opt
 )
 from ._content_validation_tools import iter_duplicate_items
 

@@ -162,8 +162,8 @@ def dump_content_as_yaml_lines(
     # TODO: Find a way to perform the dump iteratively / in a
     # streaming fashion.
     out_str = yaml.safe_dump(content, sort_keys=False)
-    for l in out_str.splitlines(keepends=True):
-        yield l
+    for line in out_str.splitlines(keepends=True):
+        yield line
 
 
 def format_content_as_yaml_str(

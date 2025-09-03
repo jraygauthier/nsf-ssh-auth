@@ -11,8 +11,8 @@ let
 
   default = pythonPackages.callPackage ./. {};
 
-  dev = default.overrideAttrs (oldAttrs: {
-    buildInputs = oldAttrs.buildInputs
+  dev = default.overridePythonAttrs (old: {
+    dependencies = (old.dependencies or [])
       ++ (with pythonPackages; [
         pytest
         mypy
@@ -22,13 +22,16 @@ let
         isort
       ]);
 
-    shellHook = with nsf-py-nix-lib; with nsf-shc-nix-lib; ''
-      ${nsfPy.shell.runSetuptoolsShellHook "${builtins.toString ./.}" default}
-      ${nsfShC.shell.loadClickExesBashCompletion [ "nsf-ssh-auth-dir" ]}
+  /*
+  TODO: Review the need for those things.
+  ${nsfPy.shell.runSetuptoolsShellHook "${builtins.toString ./.}" default pythonPackages}
+  ${nsfShC.shell.loadClickExesBashCompletion [ "nsf-ssh-auth-dir" ]}
+  source ${nsfPy.shell.shellHookLib}
+  nsf_py_set_interpreter_env_from_path
+  */
 
-      source ${nsfPy.shell.shellHookLib}
-      nsf_py_set_interpreter_env_from_path
-    '';
+    # shellHook = with nsf-py-nix-lib; with nsf-shc-nix-lib; ''
+    # '';
   });
 
 in
@@ -48,15 +51,6 @@ rec {
       '';
     };
 
-    dev = mkShell rec {
-      name = "${default.pname}-dev-shell";
-
-      PYTHONPATH = "";
-      MYPYPATH = "";
-
-      inputsFrom = [
-        dev
-      ];
-    };
+    inherit dev;
   };
 }

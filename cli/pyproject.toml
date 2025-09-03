@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nsf-ssh-auth-cli"
+version = "0.1.0"
+description = "Command line tools supporting the nsf-ssh-auth system"
+readme = "README.md"
+authors = [
+    {name = "Raymond Gauthier", email = "jraygauthier@gmail.com"}
+]
+license = {text = "Apache License 2.0"}
+
+dependencies = [
+    "click",
+    "pyyaml"
+]
+
+[project.scripts]
+nsf-ssh-auth-dir = "nsf_ssh_auth_dir.cli:run_cli_nsf_ssh_auth_dir"
+
+[tool.isort]
+multi_line_output=3
+include_trailing_comma=true
+force_grid_wrap=0
+use_parentheses=true
+line_length=88

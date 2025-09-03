@@ -106,7 +106,7 @@ def print(ctx: CliCtx, ssh_user_id: Optional[str]) -> None:
     repo = ctx.repo
     try:
         pk = repo.users[ssh_user_id].pubkey_default
-        for l in pk.text_lines:
-            click.echo(l.rstrip("\n"))
+        for line in pk.text_lines:
+            click.echo(line.rstrip("\n"))
     except (SshUsersRepoFileAccessError, SshUsersRepoKeyAccessError) as e:
         raise CliError(str(e)) from e

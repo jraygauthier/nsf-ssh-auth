@@ -1,3 +1,4 @@
+# mypy: disable-error-code="unused-ignore"
 # import logging
 from pathlib import Path
 from dataclasses import dataclass
@@ -40,7 +41,7 @@ def test_info_w_custom_cli_ctx(caplog: LogCaptureFixture) -> None:
             pass
 
     @click.group(
-        cls=click.CommandCollection,
+        cls=click.CommandCollection,  # type: ignore[type-var]
         sources=[cli],
         context_settings=mk_cli_context_settings(
             mk_db=CliCtxDb

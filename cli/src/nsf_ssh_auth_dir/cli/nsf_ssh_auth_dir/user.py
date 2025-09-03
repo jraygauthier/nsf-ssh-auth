@@ -185,6 +185,7 @@ def authorize(
     except SshUsersRepoAccessError as e:
         raise CliError(str(e)) from e
 
+
 @user.command()
 @cli_ssh_user_id_argument()
 @cli_device_user_from_option()

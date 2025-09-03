@@ -238,4 +238,3 @@ class SshUsersRepo:
         except (SshUsersRepoFileAccessError, SshUsersRepoKeyAccessError):
             if not force:
                 raise  # re-raise
-
